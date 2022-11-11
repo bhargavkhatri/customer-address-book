@@ -1,0 +1,25 @@
+.header_box {
+  position: absolute;
+  width: 1440px;
+  height: 60px;
+  left: 0px;
+  top: 0px;
+  background-color: #f2f2f2;
+}
+
+.header_logo {
+  position: absolute;
+  left: 8.47%;
+  right: 82.5%;
+  top: 16.67%;
+  bottom: 16.67%;
+  background: #c4c4c4;
+}
+
+.nav_links {
+  position: absolute;
+  left: 84.31%;
+  right: 8.4%;
+  top: 38.33%;
+  bottom: 36.67%;
+}
