@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import style from "../Css/loginpage.module.css";
 
 const CustomerLoginPage = (props) => {
@@ -28,7 +28,6 @@ const CustomerLoginPage = (props) => {
     }),
 
     onSubmit: (values) => {
-      console.log("values=>", values);
       inputVal.push(values);
     },
   });
@@ -44,7 +43,7 @@ const CustomerLoginPage = (props) => {
             top: "110px",
             fontFamily: "'Inter'",
             fontStyle: "normal",
-            fontWeight: "500",
+            fontWeight: "600",
             fontSize: "20px",
             lineHeight: "24px",
             textAlign: "center",
@@ -64,7 +63,6 @@ const CustomerLoginPage = (props) => {
 
             <input
               type="email"
-              placeholder="Enter your email"
               className={style.input_email}
               name="email"
               onChange={formik.handleChange}
@@ -89,7 +87,6 @@ const CustomerLoginPage = (props) => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.password}
-                placeholder="Enter your password"
               />
             </div>
             {formik.touched.password && formik.errors.password ? (
@@ -97,9 +94,11 @@ const CustomerLoginPage = (props) => {
                 {formik.errors.password}
               </div>
             ) : null}
-            <button className={style.signin_button} type="submit">
-              <div className={style.signin_text}>Sign In</div>
-            </button>
+            <Link to="/addressbook">
+              <button className={style.signin_button} type="submit">
+                <div className={style.signin_text}>Sign In</div>
+              </button>
+            </Link>
           </form>
         </div>
       </Box>

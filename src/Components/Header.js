@@ -9,17 +9,16 @@ import Typography from "@mui/material/Typography";
 import style from "../Css/header.module.css";
 
 import web_logo from "../Images/web_logo.png";
+import { Link } from "@mui/material";
 
-import { Link, useNavigate } from "react-router-dom";
-
-const navItems = ["Home", "About", "Contact"];
+// import { Link, useNavigate } from "react-router-dom";
 
 const Header = (props) => {
   const { window, isAuth, setIsAuth } = props;
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const navigate = useNavigate();
+  //   const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -34,24 +33,6 @@ const Header = (props) => {
   //     });
   //   };
 
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        JustPostIt
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -65,8 +46,12 @@ const Header = (props) => {
           <b>EAddressbook</b>
         </div>
         <div className={style.nav_links}>
-          <Link>Sign in</Link>
-          <Link>Sign up</Link>
+          <Link href="" underline="none" sx={{ ml: 2, color: "#000000" }}>
+            Sign in
+          </Link>
+          <Link href="" underline="none" sx={{ ml: 2, color: "#000000" }}>
+            Sign up
+          </Link>
         </div>
       </Box>
     </>

@@ -1,0 +1,64 @@
+.search_box {
+  position: absolute;
+  width: 467px;
+  height: 50px;
+  left: 487px;
+  top: 185px;
+  background: #f2f2f2;
+}
+
+.address_outer_box {
+  position: absolute;
+  width: 270px;
+  height: 299px;
+  left: 136px;
+  top: 310px;
+  background: #f2f2f2;
+}
+
+.address_content {
+  width: 231px;
+  height: 265px;
+  left: 155px;
+  top: 328px;
+}
+
+.edit_address {
+  position: static;
+  margin-top: 7px;
+  margin-left: 245px;
+  width: 20px;
+  height: 20px;
+  left: 371px;
+  top: 325px;
+}
+
+.remove_address {
+  position: static;
+  margin-left: 243px;
+  margin-top: 245px;
+  width: 33px;
+  height: 33px;
+  left: 364px;
+  top: 565px;
+}
+
+.add_new_address_button {
+  position: absolute;
+  width: 210px;
+  height: 60px;
+  left: 615px;
+  top: 691px;
+  background: #000000;
+  cursor: pointer;
+}
+
+.add_new_address_text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+}
