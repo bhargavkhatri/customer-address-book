@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CustomerLoginPage from "./Pages/CustomerLoginPage";
 
 const App = () => {
   return (
@@ -10,8 +11,8 @@ const App = () => {
       <Router>
         <Header />
         <Routes>
-          {/* <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+          <Route path="/" element={<CustomerLoginPage />} />
+          {/* <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/all-posts" element={<AllPosts />} /> */}
         </Routes>

@@ -1,0 +1,84 @@
+.login_outer_box {
+  position: absolute;
+  width: 466px;
+  height: 363px;
+  left: 487px;
+  top: 245px;
+}
+
+.login_inner_box {
+  padding-top: 15px;
+  width: 440px;
+  height: 280px;
+  left: 105px;
+  right: 105px;
+  top: 208px;
+  background: #f2f2f2;
+}
+
+.title_email {
+  padding-top: 24px;
+  padding-left: 20px;
+  width: 36px;
+  height: 17px;
+  left: 509px;
+  top: 332px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+}
+
+.title_password {
+  padding-top: 65px;
+  padding-left: 20px;
+  width: 66px;
+  height: 17px;
+  left: 509px;
+  top: 419px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+}
+
+.input_email {
+  padding-top: 6px;
+  width: 421px;
+  height: 48px;
+  left: 500px;
+  top: 355px;
+  background: #c4c4c4;
+}
+
+.input_password {
+  padding-top: 6px;
+  width: 421px;
+  height: 48px;
+  left: 509px;
+  top: 443px;
+  background: #c4c4c4;
+}
+
+.signin_button {
+  margin-top: 32px;
+  width: 421px;
+  height: 60px;
+  left: 509px;
+  top: 523px;
+  background: #000000;
+}
+
+.signin_text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+}
