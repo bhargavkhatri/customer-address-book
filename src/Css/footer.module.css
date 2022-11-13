@@ -1,6 +1,6 @@
 .footer_box {
   position: absolute;
-  margin-top: 110px;
+  margin-top: 205px;
   width: 1440px;
   height: 62px;
   left: 0px;
@@ -14,7 +14,6 @@
   right: 40.07%;
   top: 38.71%;
   bottom: 37.1%;
-  font-family: "Inter";
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -28,7 +27,6 @@
   right: 80%;
   top: 38.71%;
   bottom: 37.1%;
-  font-family: "Inter";
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -40,6 +38,6 @@
   position: absolute;
   left: 83.82%;
   right: 8.54%;
-  top: 33.87%;
+  top: 51%;
   bottom: 33.87%;
 }

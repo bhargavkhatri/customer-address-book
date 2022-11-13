@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Grid } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
-import style from "../Css/loginpage.module.css";
+import { useNavigate } from "react-router-dom";
+import style from "../Css/addaddress.module.css";
 
 const AddAddress = (props) => {
   const [inputVal, setInputVal] = useState([]);
+  const [addressId, setAddressId] = React.useState();
 
   const navigation = useNavigate();
+
+  const generateAddressId = () => {
+    setAddressId(("" + Math.random()).substring(2, 9));
+  };
+
+  useEffect(() => {
+    generateAddressId();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -23,7 +32,7 @@ const AddAddress = (props) => {
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("First name is required"),
-      lastName: Yup.string().required("Last Name is required"),
+      lastName: Yup.string().required("Last name is required"),
       firstAddress: Yup.string().required("First address is required"),
       city: Yup.string().required("City is required"),
       state: Yup.string().required("State is required"),
@@ -31,18 +40,20 @@ const AddAddress = (props) => {
       telephone: Yup.string().required("Telephone is required"),
     }),
 
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       inputVal.push(values);
+      resetForm({ values: "" });
     },
   });
 
   const inputStyle = {
     paddingTop: "6px",
-    width: "210px",
+    width: "200px",
     height: "48px",
     left: "500px",
     top: "355px",
     background: "#c4c4c4",
+    border: "none",
   };
   return (
     <>
@@ -54,7 +65,6 @@ const AddAddress = (props) => {
             height: "24px",
             left: "617px",
             top: "110px",
-            fontFamily: "'Inter'",
             fontStyle: "normal",
             fontWeight: "600",
             fontSize: "20px",
@@ -69,8 +79,8 @@ const AddAddress = (props) => {
 
       <Box className={style.login_outer_box}>
         <div className={style.login_inner_box}>
-          <form onSubmit={formik.handleSubmit}>
-            <h5>Address ID : #6978054</h5>
+          <form onSubmit={formik.handleSubmit} style={{ paddingLeft: "17px" }}>
+            <h5>Address ID : #{addressId}</h5>
             <Grid container spacing={0}>
               <Grid item xs>
                 <label htmlFor="firstName" className={style.title_email}>

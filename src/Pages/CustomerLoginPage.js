@@ -4,8 +4,24 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import style from "../Css/loginpage.module.css";
+import { gql, useMutation } from "@apollo/client";
+
+// mutation
+
+const LOGIN = gql`
+  mutation {
+    generateCustomerToken(
+      email: "roni_cost@example.com"
+      password: "roni_cost3@example.com"
+    ) {
+      token
+    }
+  }
+`;
 
 const CustomerLoginPage = (props) => {
+  const { data, loading, error } = useMutation(LOGIN);
+
   const [inputVal, setInputVal] = useState([]);
   const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{8,}$/;
   const navigation = useNavigate();
@@ -27,8 +43,9 @@ const CustomerLoginPage = (props) => {
         ),
     }),
 
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       inputVal.push(values);
+      resetForm({ values: "" });
     },
   });
   return (
@@ -41,7 +58,6 @@ const CustomerLoginPage = (props) => {
             height: "24px",
             left: "617px",
             top: "110px",
-            fontFamily: "'Inter'",
             fontStyle: "normal",
             fontWeight: "600",
             fontSize: "20px",
@@ -56,7 +72,7 @@ const CustomerLoginPage = (props) => {
 
       <Box className={style.login_outer_box}>
         <div className={style.login_inner_box}>
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={formik.handleSubmit} style={{ paddingLeft: "17px" }}>
             <label htmlFor="email" className={style.title_email}>
               Email
             </label>
@@ -71,7 +87,7 @@ const CustomerLoginPage = (props) => {
             />
 
             {formik.touched.email && formik.errors.email ? (
-              <div className="alert alert-danger mt-2" role="alert">
+              <div className="alert alert-danger mt-2">
                 {formik.errors.email}
               </div>
             ) : null}

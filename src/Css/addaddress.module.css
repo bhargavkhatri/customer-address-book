@@ -7,9 +7,9 @@
 }
 
 .login_inner_box {
-  padding-top: 45px;
+  padding-top: 23px;
   width: 460px;
-  height: 325px;
+  height: 745px;
   left: 105px;
   right: 105px;
   top: 208px;
@@ -17,7 +17,7 @@
 }
 
 .title_email {
-  padding-top: 25px;
+  padding-top: 24px;
   width: 36px;
   height: 17px;
   left: 509px;
@@ -30,7 +30,7 @@
 }
 
 .title_password {
-  padding-top: 67px;
+  padding-top: 65px;
   width: 66px;
   height: 17px;
   left: 509px;
@@ -43,7 +43,7 @@
 }
 
 .input_email {
-  padding-top: 8px;
+  padding-top: 6px;
   width: 421px;
   height: 48px;
   left: 500px;
@@ -53,7 +53,7 @@
 }
 
 .input_password {
-  padding-top: 8px;
+  padding-top: 6px;
   width: 421px;
   height: 48px;
   left: 509px;
