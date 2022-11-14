@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Box, Grid } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
 import style from "../Css/addaddress.module.css";
 
 const AddAddress = (props) => {
-  const [inputVal, setInputVal] = useState([]);
   const [addressId, setAddressId] = React.useState();
 
-  const navigation = useNavigate();
-
+  //For auto generate AddressId
   const generateAddressId = () => {
     setAddressId(("" + Math.random()).substring(2, 9));
   };
@@ -19,6 +16,7 @@ const AddAddress = (props) => {
     generateAddressId();
   }, []);
 
+  // For validation
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -37,11 +35,15 @@ const AddAddress = (props) => {
       city: Yup.string().required("City is required"),
       state: Yup.string().required("State is required"),
       country: Yup.string().required("Country is required"),
-      telephone: Yup.string().required("Telephone is required"),
+      telephone: Yup.string()
+        .required("Telephone is required")
+        .matches(
+          /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+          "Telephone number is not valid"
+        ),
     }),
 
     onSubmit: (values, { resetForm }) => {
-      inputVal.push(values);
       resetForm({ values: "" });
     },
   });
@@ -219,7 +221,7 @@ const AddAddress = (props) => {
               Telephone
             </label>
             <input
-              type="tel"
+              type="number"
               className={style.input_email}
               name="telephone"
               onChange={formik.handleChange}
@@ -232,11 +234,10 @@ const AddAddress = (props) => {
                 {formik.errors.telephone}
               </div>
             ) : null}
-            <Link to="/addressbook">
-              <button className={style.signin_button} type="submit">
-                <div className={style.signin_text}>Save Address</div>
-              </button>
-            </Link>
+
+            <button className={style.signin_button} type="submit">
+              <div className={style.signin_text}>Save Address</div>
+            </button>
           </form>
         </div>
       </Box>

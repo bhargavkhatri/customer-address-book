@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import style from "../Css/offlinemodeui.module.css";
 
 const OfflineModeUI = (props) => {
+  // For add refresh functionality
   const refreshPage = () => {
     window.location.reload();
   };

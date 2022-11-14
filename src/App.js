@@ -8,11 +8,25 @@ import { ApolloProvider } from "@apollo/client";
 import CustomerLoginPage from "./Pages/CustomerLoginPage";
 import Addressbook from "./Pages/Addressbook";
 import AddAddress from "./Pages/AddAddress";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
     <>
       <ApolloProvider client={client}>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <Router>
           <Header />
           <Routes>

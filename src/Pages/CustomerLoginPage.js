@@ -1,31 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from "../Css/loginpage.module.css";
 import { gql, useMutation } from "@apollo/client";
+import { toast } from "react-toastify";
 
-// mutation
+// For Login mutation
 
 const LOGIN = gql`
-  mutation {
-    generateCustomerToken(
-      email: "roni_cost@example.com"
-      password: "roni_cost3@example.com"
-    ) {
+  mutation ($email: String!, $password: String!) {
+    generateCustomerToken(email: $email, password: $password) {
       token
     }
   }
 `;
 
 const CustomerLoginPage = (props) => {
-  const { data, loading, error } = useMutation(LOGIN);
+  const [generateCustomerToken, { data, loading, error }] = useMutation(LOGIN);
 
-  const [inputVal, setInputVal] = useState([]);
-  const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{8,}$/;
+  useEffect(() => {
+    localStorage.setItem(
+      "token",
+      JSON.stringify(data?.generateCustomerToken?.token)
+    );
+  }, [data]);
+
+  useEffect(() => {
+    if (data?.generateCustomerToken?.token) {
+      toast.success("Login has been completed successfully");
+      navigation("/addressbook");
+    }
+  }, [data?.generateCustomerToken?.token]);
+
+  const passwordRegex = /^(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{8,}$/;
   const navigation = useNavigate();
 
+  // For validation
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -39,12 +51,16 @@ const CustomerLoginPage = (props) => {
         .required("Password is required")
         .matches(
           passwordRegex,
-          "Minimum eight characters, at least one  special character and one upper case is needed"
+          "A minimum of eight characters and at least one  special character are needed"
         ),
     }),
 
     onSubmit: (values, { resetForm }) => {
-      inputVal.push(values);
+      const { email, password } = values;
+      generateCustomerToken({
+        variables: { email: email, password: password },
+      });
+
       resetForm({ values: "" });
     },
   });
@@ -110,11 +126,10 @@ const CustomerLoginPage = (props) => {
                 {formik.errors.password}
               </div>
             ) : null}
-            <Link to="/addressbook">
-              <button className={style.signin_button} type="submit">
-                <div className={style.signin_text}>Sign In</div>
-              </button>
-            </Link>
+
+            <button className={style.signin_button} type="submit">
+              <div className={style.signin_text}>Sign In</div>
+            </button>
           </form>
         </div>
       </Box>
