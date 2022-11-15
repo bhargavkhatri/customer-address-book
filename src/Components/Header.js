@@ -7,6 +7,7 @@ import web_logo from "../Images/web_logo.png";
 import { Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
+import { toast } from "react-toastify";
 
 // For logout mutation
 
@@ -34,18 +35,19 @@ const Header = (props) => {
     setConnectionStatus(navigator.onLine);
   }, [navigator.onLine]);
 
-  const [token, setToken] = useState(false);
+  const [token, setToken] = useState();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setToken(true);
-    }
-  }, []);
+    const tokenId = localStorage.getItem("token");
+
+    setToken(tokenId);
+  }, [localStorage.getItem("token")]);
 
   const handleLogout = () => {
     localStorage?.clear();
+    setToken(true);
     revokeCustomerToken();
+    toast.success("Log out has been completed successfully");
     navigate("/");
   };
 
@@ -81,7 +83,7 @@ const Header = (props) => {
             underline="none"
             sx={{ ml: 2, color: "#000000" }}
           ></Link>
-          {token ? (
+          {token && token !== "undefined" ? (
             `Welcome,`
           ) : (
             <Link href="" underline="none" sx={{ ml: 2, color: "#000000" }}>
@@ -89,7 +91,7 @@ const Header = (props) => {
             </Link>
           )}
 
-          {token ? (
+          {token && token !== "undefined" ? (
             <Link
               href=""
               underline="none"

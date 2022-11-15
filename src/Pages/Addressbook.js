@@ -1,3 +1,4 @@
+import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "../Components/ConfirmationModal";
@@ -6,8 +7,33 @@ import edit_icon from "../Images/edit_icon.png";
 import remove_icon from "../Images/remove_icon.png";
 import search_icon from "../Images/search_icon.png";
 
+// For get the addresses
+
+const GET_ADDRESSES = gql`
+  query {
+    customer {
+      firstname
+      lastname
+      email
+      addresses {
+        id
+        city
+        country_code
+        region {
+          region
+          region_code
+        }
+        street
+        postcode
+        telephone
+      }
+    }
+  }
+`;
 const Addressbook = (props) => {
   const [open, setOpen] = React.useState(false);
+
+  const { data, error, loading } = useQuery(GET_ADDRESSES);
 
   const handleOpen = () => {
     setOpen(true);

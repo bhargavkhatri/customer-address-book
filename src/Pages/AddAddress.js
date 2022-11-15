@@ -3,9 +3,47 @@ import { Box, Grid } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import style from "../Css/addaddress.module.css";
+import { gql, useMutation } from "@apollo/client";
+
+// For add address
+
+// const ADD_ADDRESS = gql`
+//   mutation ($firstname: String!, $lastname: String!, telephone: String!,city: String!) {
+//     createCustomerAddress(
+//       input: {
+//         region: { region_id: 7 },
+//         country_code: US,
+//         street: ["123 Main Street"],
+//         telephone: $telephone,
+//         postcode: "77777",
+//         city: $city,
+//         firstname: $firstname,
+//         lastname: $lastname,
+//         default_shipping: true,
+//         default_billing: false
+//       }
+//     ) {
+//       id
+//       region {
+//         region
+//         region_code
+//       }
+//       country_code
+//       street
+//       telephone
+//       postcode
+//       city
+//       default_shipping
+//       default_billing
+//     }
+//   }
+// `;
 
 const AddAddress = (props) => {
   const [addressId, setAddressId] = React.useState();
+
+  // const [createCustomerAddress, { data, loading, error }] =
+  //   useMutation(ADD_ADDRESS);
 
   //For auto generate AddressId
   const generateAddressId = () => {
@@ -44,6 +82,15 @@ const AddAddress = (props) => {
     }),
 
     onSubmit: (values, { resetForm }) => {
+      const { firstName, lastName, city, telephone } = values;
+      // createCustomerAddress({
+      //   variables: {
+      //     firstname: firstName,
+      //     lastname: lastName,
+      //     telephone: telephone,
+      //     city: city,
+      //   },
+      // });
       resetForm({ values: "" });
     },
   });
